@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import { Switch, Route, Link } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import SignupPage from './Pages/SignupPage/SignupPage';
 import NavBar from './Components/NavBar/NavBar';
 import LoginPage from './Pages/LoginPage/LoginPage';
@@ -18,7 +18,12 @@ class App extends Component{
   handleLogout = () => {
     userService.logout();
     this.setState({ user: null });
+  };
+
+  handleSignup = () => {
+    this.setState({user: userService.getUser()});
   }
+  
 
   render() {
 
@@ -28,19 +33,30 @@ class App extends Component{
             user={this.state.user} 
             handleLogout={this.handleLogout}
           />
-          Hello this is app
+          {/* Hello this is app
           <Link to="/signup">
             Signup
           </Link>
   
           <Link to="/login">
             Login
-          </Link>
+          </Link> */}
   
           <Switch>
-            <Route path='/signup' component={()=>
-              <SignupPage/>
-            } />
+            <Route 
+              exact
+              path='/signup' 
+              render={({history}) =>(
+              <SignupPage 
+                history={history}
+                handleSignup={this.handleSignup}
+              />
+              
+              )}
+            //   component={()=>
+            //   <SignupPage/>
+            // } 
+            />
             <Route path='/login' component={()=>
               <LoginPage />
             }/>

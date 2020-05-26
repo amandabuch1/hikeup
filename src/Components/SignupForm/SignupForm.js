@@ -22,6 +22,7 @@ class SignupForm extends Component {
     e.preventDefault();
     try {
       await userService.signup(this.state);
+      this.props.handleSignup();
       // Successfully signed up - show GamePage
       this.props.history.push('/');
     } catch (err) {
@@ -31,7 +32,10 @@ class SignupForm extends Component {
   }
 
   isFormInvalid() {
-    return !(this.state.name && this.state.email && this.state.password === this.state.passwordConf);
+    return !(
+      this.state.name 
+      && this.state.email 
+      && this.state.password === this.state.passwordConf);
   }
   
   render() {
