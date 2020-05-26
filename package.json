@@ -9,6 +9,7 @@
     "bcrypt": "^4.0.1",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.15",
     "morgan": "^1.10.0",
     "react": "^16.13.1",
@@ -21,7 +22,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "console": "node console.js"
   },
   "eslintConfig": {
     "extends": "react-app"
