@@ -20,7 +20,7 @@ class App extends Component{
     this.setState({ user: null });
   };
 
-  handleSignup = () => {
+  handleSignupOrLogin = () => {
     this.setState({user: userService.getUser()});
   }
   
@@ -49,7 +49,7 @@ class App extends Component{
               render={({history}) =>(
               <SignupPage 
                 history={history}
-                handleSignup={this.handleSignup}
+                handleSignupOrLogin={this.handleSignupOrLogin}
               />
               
               )}
@@ -57,9 +57,15 @@ class App extends Component{
             //   <SignupPage/>
             // } 
             />
-            <Route path='/login' component={()=>
-              <LoginPage />
-            }/>
+            <Route 
+              path='/login' 
+              render={ ({ history }) => (
+                <LoginPage 
+                  history={history}
+                  handleSignupOrLogin={this.handleSignupOrLogin} 
+                /> 
+              )}
+            />
           </Switch>
       </div>
     );
