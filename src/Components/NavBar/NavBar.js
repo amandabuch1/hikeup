@@ -4,9 +4,24 @@ import { Link } from 'react-router-dom';
 const NavBar = (props) =>{
     let nav = props.user?
     <div>
-      <Link to='' className='NavBar-link' onClick={props.handleLogout}>LOG OUT</Link>
-      &nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-      <span>WELCOME, {props.user.name}</span>
+        <Link to='' onClick={props.handleLogout}>
+            LOG OUT
+        </Link>
+        &nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+        <Link to='/'>
+            Home
+        </Link>
+        &nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+        <Link to='/hikes'>
+            All Hikes
+        </Link>
+        &nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+        <Link to='/createhike'>
+            Create a Hike
+        </Link>
+
+        &nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+        <span>WELCOME, {props.user.name}</span>
    </div>
     :
     <div>
@@ -16,6 +31,10 @@ const NavBar = (props) =>{
         &nbsp;&nbsp;|&nbsp;&nbsp;
         <Link to="/login">
             Login
+        </Link>
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        <Link to='/'>
+            About
         </Link>
     </div>;
 

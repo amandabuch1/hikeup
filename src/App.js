@@ -5,6 +5,10 @@ import SignupPage from './Pages/SignupPage/SignupPage';
 import NavBar from './Components/NavBar/NavBar';
 import LoginPage from './Pages/LoginPage/LoginPage';
 import userService from './utils/userService';
+import Home from './Components/Home/Home'
+import AllHikes from './Components/AllHikes/AllHikes';
+import CreateHike from './Components/CreateHike/CreateHike';
+
 
 class App extends Component{
   constructor(){
@@ -44,6 +48,29 @@ class App extends Component{
   
           <Switch>
             <Route 
+              exact 
+              path="/" 
+              component={Home} 
+            />
+
+            <Route
+              exact
+              path="/hikes" 
+              render={()=>
+                <AllHikes />
+              }
+            />
+
+            <Route
+              exact
+              path="/createhike" 
+              render={()=>
+                <CreateHike />
+              }
+            />
+
+
+            <Route 
               exact
               path='/signup' 
               render={({history}) =>(
@@ -51,12 +78,9 @@ class App extends Component{
                 history={history}
                 handleSignupOrLogin={this.handleSignupOrLogin}
               />
-              
               )}
-            //   component={()=>
-            //   <SignupPage/>
-            // } 
             />
+
             <Route 
               path='/login' 
               render={ ({ history }) => (
@@ -66,6 +90,7 @@ class App extends Component{
                 /> 
               )}
             />
+
           </Switch>
       </div>
     );
