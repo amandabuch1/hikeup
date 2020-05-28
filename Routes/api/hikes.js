@@ -9,7 +9,8 @@ router.post('/create', hikesCtrl.create)
 
 // /*---------- Protected Routes ----------*/
 // // Process the token for only the routes below
-app.use(require('../../config/auth'));
+
+router.use(require('../../config/auth'));
 router.post('/create', checkAuth, hikesCtrl.create)
 // router.use(require('../../config/auth'));
 // router.post('/', checkAuth, scoresCtrl.create);

@@ -17,7 +17,8 @@ app.use(express.static(path.join(__dirname, 'build')));
 
 // Put API routes here, before the "catch all" route
 app.use("/api/users", require("./routes/api/user"));
-
+// Mount our custom auth middleware to protect routes below it
+app.use(require('./config/auth'))
 app.use("/api/hikes", require("./routes/api/hikes"));
 
 // The following "catch all" route (note the *)is necessary
