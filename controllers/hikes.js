@@ -11,18 +11,21 @@ const create = async(req, res) =>{
 // todo something likt this console.log(req.header
 // todo req.heaader.authorization
 // todo how to get authoten token from headers
-    console.log("req.user",req.user);
-    // req.body.user = req.user._id;
+    // loging the user 
+    // console.log("req.user",req.user, req.user._id);
+    req.body.user = req.user._id;
 
-
+    
     // create a new matza
     const hike = new Hike(req.body);
-    // hike.user = req.user._id;
-    // save the new matza to the database
+    // hike.push(req.user);
+    // save the new matza to the database\
+    // hike.push(req.user._id);
     try {
         await hike.save();
         console.log(hike)
         res.json( hike );
+
       } catch (err) {
         // Probably a duplicate email
         res.status(400).json(err);
