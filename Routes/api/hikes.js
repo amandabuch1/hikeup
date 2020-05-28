@@ -1,18 +1,22 @@
-// const express = require('express');
-// const router = express.Router();
-// const hikesCtrl = require('../../controllers/hikes')
+const express = require('express');
+const router = express.Router();
+const hikesCtrl = require('../../controllers/hikes')
 
-// // router.get('/', scoresCtrl.highScores);
+router.post('/create', hikesCtrl.create)
 
-// // /*---------- Protected Routes ----------*/
-// // // Process the token for only the routes below
-// // router.use(require('../../config/auth'));
-// // router.post('/', checkAuth, scoresCtrl.create);
+// router.get('/', scoresCtrl.highScores);
 
-// // /*----- Helper Functions -----*/
-// // function checkAuth(req, res, next) {
-// //   if (req.user) return next();
-// //   return res.status(401).json({msg: 'Not Authorized'});
-// // }
+// /*---------- Protected Routes ----------*/
+// // Process the token for only the routes below
 
-// module.exports =router;
+router.post('/create', checkAuth, hikesCtrl.create)
+// router.use(require('../../config/auth'));
+// router.post('/', checkAuth, scoresCtrl.create);
+
+/*----- Helper Functions -----*/
+function checkAuth(req, res, next) {
+  if (req.user) return next();
+  return res.status(401).json({msg: 'Not Authorized'});
+}
+
+module.exports =router;

@@ -13,11 +13,18 @@ const hikeSchema = new Schema({
         type: String,
         required: true
     },
+
     user: {
         type: Schema.Types.ObjectId, 
-        ref: 'User', 
-        required: true
-    }
+        ref: 'User'
+    },
+
+    // TODO NEED TO DOUBLE CHECK THIS
+    // comment: {
+    //     type: Schema.Types.ObjectId, 
+    //     ref: 'Comment'
+    // }
+
 }, {
     timestamps: true
 });

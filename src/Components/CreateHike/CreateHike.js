@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import hikesService from '../../utils/hikeService';
 
 class CreateHike extends Component {
 
@@ -10,16 +11,41 @@ class CreateHike extends Component {
         }
     };
     
+    // async componentDidMount() {
+    //     const hikes = await hikesService.index();
+    //     this.props.handleUpdateScores(hikes);
+    // }
+
     addHike = (e) => {
         e.preventDefault();
+
+        console.log(this.state.newHike)
+
+        fetch('/api/hikes/' + 'create', {
+            method: 'POST',
+            mode: 'cors', 
+            cache: 'no-cache', 
+            credentials: 'same-origin',
+            headers: new Headers({'Content-Type': 'application/json'}),
+            body: JSON.stringify(this.state.newHike)
+          })
         
-        // Using the "function" approach because relying on existing state
-        this.setState(state => ({
-            // Always replace, don't mutate top-level state properties
-            hikes: [...state.hikes, state.newHike],
-            // Reset the inputs for better UX
-            newHike: {title: '', description: 'add description'}
-        }));
+          .then(res => {
+            if (res.ok){
+                // Using the "function" approach because relying on existing state
+                this.setState(state => ({
+                    // Always replace, don't mutate top-level state properties
+                    hikes: [...state.hikes, this.state.newHike],
+                    // Reset the inputs for better UX
+                    newHike: {title: '', description: 'add description'}
+                }));
+            };
+            // Probably a duplicate email
+            // res.json().then(function(err) {
+            //     throw new Error(err)
+            // })
+          })
+        
     };
 
     handleFormChange = e => {
@@ -33,6 +59,7 @@ class CreateHike extends Component {
         });
         
     };
+
 
     render() {
         return (
