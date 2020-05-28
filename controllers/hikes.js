@@ -11,11 +11,13 @@ const create = async(req, res) =>{
 // todo something likt this console.log(req.header
 // todo req.heaader.authorization
 // todo how to get authoten token from headers
+    console.log("req.user",req.user);
     // req.body.user = req.user._id;
 
 
     // create a new matza
     const hike = new Hike(req.body);
+    // hike.user = req.user._id;
     // save the new matza to the database
     try {
         await hike.save();
@@ -26,11 +28,6 @@ const create = async(req, res) =>{
         res.status(400).json(err);
       }
 };
-
-
-
-
-
 
 module.exports = {
     create,

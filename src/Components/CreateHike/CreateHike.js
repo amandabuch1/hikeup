@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import hikesService from '../../utils/hikeService';
+import tokenService from '../../utils/tokenService';
+// import hikesService from '../../utils/hikeService';
 
 class CreateHike extends Component {
 
@@ -26,7 +27,11 @@ class CreateHike extends Component {
             mode: 'cors', 
             cache: 'no-cache', 
             credentials: 'same-origin',
-            headers: new Headers({'Content-Type': 'application/json'}),
+            headers: {
+                'Authorization': 'Bearer ' + tokenService.getToken(),
+                'Content-Type': 'application/json'
+              },
+            // headers: new Headers({'Content-Type': 'application/json'}),
             body: JSON.stringify(this.state.newHike)
           })
         
