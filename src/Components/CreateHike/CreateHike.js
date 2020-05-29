@@ -53,8 +53,8 @@ class CreateHike extends Component {
         // })
       })
       .then((data) => {
-        //   console.log(data)
-        this.props.updateHikes(data.hike);
+          console.log(data)
+        // this.props.updateHikes(data.hike);
       });
   };
 
@@ -75,7 +75,7 @@ class CreateHike extends Component {
       this.props.nearbyTrails.length > 0 &&
       this.props.nearbyTrails.map((trail) => {
         return (
-          <option key={trail.id} value={trail.id}>
+          <option key={trail.id} value={trail.name}>
             {trail.name}
           </option>
         );
@@ -96,7 +96,13 @@ class CreateHike extends Component {
                         onChange={this.handleFormChange}
                         required
                     /> */}
-            <select name="title" id="title" required>
+            <select 
+              name="title" 
+              id="title" 
+              required
+              value={this.state.newHike.title}
+              onChange={this.handleFormChange}
+            >
               {hikesList}
             </select>
           </label>
@@ -117,10 +123,6 @@ class CreateHike extends Component {
               onChange={this.handleFormChange}
               value={this.state.newHike.date}
             ></input>
-            {/* <DatetimeInput
-                            datetime={this.state.datetime}
-                            onChange={this.handleOnChange.bind(this)}>
-                        </DatetimeInput> */}
           </label>
 
           <button>ADD Hike</button>
