@@ -39,7 +39,7 @@ class CreateHike extends Component {
           .then(res => {
             if (res.ok){
                 // Using the "function" approach because relying on existing state
-                console.log(res);
+                // console.log(res);
                 // this.props.updateHikes(this.state.newHike)
                 this.setState(state => ({
                     // Always replace, don't mutate top-level state properties
@@ -56,7 +56,7 @@ class CreateHike extends Component {
             // })
           })
           .then(data=>{
-              console.log(data)
+            //   console.log(data)
               this.props.updateHikes(data.hike)
           })
         

@@ -14,7 +14,9 @@ router.post('/create', hikesCtrl.create);
 // // Process the token for only the routes below
 
 router.use(require('../../config/auth'));
-router.post('/create', checkAuth, hikesCtrl.create)
+router.post('/create', checkAuth, hikesCtrl.create);
+router.post('/all', checkAuth, hikesCtrl.index);
+// router.post('/random', checkAuth, eventsCtrl.getRandom);
 // router.use(require('../../config/auth'));
 // router.post('/', checkAuth, scoresCtrl.create);
 
