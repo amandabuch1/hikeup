@@ -5,10 +5,11 @@ import tokenService from '../../utils/tokenService';
 class CreateHike extends Component {
 
     state = {
-        hikes: [{ title: "runyon cannon", description: 4 }],
+        // hikes: [{ title: "runyon cannon", description: 4 }],
         newHike:{
             title: '',
-            description: 'add description',
+            description: '',
+            date: '',
         }
     };
     
@@ -38,17 +39,25 @@ class CreateHike extends Component {
           .then(res => {
             if (res.ok){
                 // Using the "function" approach because relying on existing state
+                console.log(res);
+                // this.props.updateHikes(this.state.newHike)
                 this.setState(state => ({
                     // Always replace, don't mutate top-level state properties
-                    hikes: [...state.hikes, this.state.newHike],
+                    // hikes: [...state.hikes, this.state.newHike],
                     // Reset the inputs for better UX
-                    newHike: {title: '', description: 'add description'}
+                    newHike: {title: '', description: '', date:''}
+
                 }));
+                return res.json();
             };
             // Probably a duplicate email
             // res.json().then(function(err) {
             //     throw new Error(err)
             // })
+          })
+          .then(data=>{
+              console.log(data)
+              this.props.updateHikes(data.hike)
           })
         
     };
@@ -71,12 +80,7 @@ class CreateHike extends Component {
             <section>
                 <h2>Create a Hike</h2>
                 <hr />
-                {this.state.hikes.map((h, idx) => (
-                    <article key={idx}>
-                        <div>{h.title}</div> 
-                        <div>{h.description}</div>
-                    </article>
-                ))}
+              
                 <hr />
                 <form onSubmit={this.addHike}>
                     <label>
@@ -89,13 +93,23 @@ class CreateHike extends Component {
                     />
                     </label>
                     <label>
-                    <span>description</span>
+                    <span>Description</span>
                     <input
                         name='description'
                         value={this.state.newHike.description}
                         onChange={this.handleFormChange}
                     />
                     </label>
+
+                    <label>
+                        <span>Date</span>
+                        <input 
+                            type="datetime-local" 
+                            name="date"
+                        >
+                        </input>
+                    </label>
+
                     <button>ADD Hike</button>
                 </form>
             </section>

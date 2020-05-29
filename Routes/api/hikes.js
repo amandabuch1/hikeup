@@ -3,7 +3,10 @@ const router = express.Router();
 const hikesCtrl = require('../../controllers/hikes');
 
 
-router.post('/create', hikesCtrl.create)
+// router.get('/', matzasCtrl.index);
+
+router.post('/create', hikesCtrl.create);
+
 
 // router.get('/', scoresCtrl.highScores);
 

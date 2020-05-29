@@ -15,7 +15,10 @@ class App extends Component{
     super();
     this.state = {
       // Initialize user if there's a token, otherwise null
-      user: userService.getUser()
+      user: userService.getUser(),
+      hikes: [
+        // { title: "runyon cannon", description: 4 }
+      ],
     }
   };
 
@@ -26,6 +29,16 @@ class App extends Component{
 
   handleSignupOrLogin = () => {
     this.setState({user: userService.getUser()});
+  }
+
+  updateHikes =(newHike)=>{
+    console.log(newHike);
+    this.setState({ 
+        hikes: [
+          ...this.state.hikes,
+          newHike
+        ]
+    })
   }
   
 
@@ -57,7 +70,10 @@ class App extends Component{
               exact
               path="/hikes" 
               render={()=>
-                <AllHikes />
+                <AllHikes 
+                  hikes={this.state.hikes}
+
+                />
               }
             />
 
@@ -65,7 +81,10 @@ class App extends Component{
               exact
               path="/createhike" 
               render={()=>
-                <CreateHike />
+                <CreateHike 
+                  allHikes={this.state.hikes}
+                  updateHikes={this.updateHikes}
+                />
               }
             />
 
