@@ -21,8 +21,14 @@ class App extends Component {
         long: null,
       },
       hikes: [
+        // from our DB
         // { title: "runyon cannon", description: 4 }
       ],
+      nearbyTrails: [{ id: 5, name: "Hello" }],
+
+      // { trails: [{ id: 5, name: "Hello" }] },
+      // from 3d party API
+      // { title: "runyon cannon", description: 4 }
       isLoading: true,
     };
   }
@@ -106,7 +112,8 @@ class App extends Component {
       })
       .then((hikes) => {
         console.log(hikes.trails);
-        this.setState({ hikes: hikes });
+        console.log("Updating state with hikes");
+        this.setState({ nearbyTrails: hikes.trails });
       });
   };
 
@@ -147,7 +154,7 @@ class App extends Component {
             path="/createhike"
             render={() => (
               <CreateHike
-                allHikes={this.state.hikes}
+                nearbyTrails={this.state.nearbyTrails}
                 updateHikes={this.updateHikes}
               />
             )}
