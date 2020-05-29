@@ -1,3 +1,5 @@
+// TEST FORNEW CLONE 
+
 const express = require('express');
 const router = express.Router();
 const hikesCtrl = require('../../controllers/hikes');
