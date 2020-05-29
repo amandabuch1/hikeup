@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import tokenService from '../../utils/tokenService';
 // import hikesService from '../../utils/hikeService';
 
+
 class CreateHike extends Component {
 
     state = {
@@ -106,8 +107,15 @@ class CreateHike extends Component {
                         <input 
                             type="datetime-local" 
                             name="date"
+                            onChange={this.handleFormChange}
+                            value={this.state.newHike.date}
                         >
+                        
                         </input>
+                        {/* <DatetimeInput
+                            datetime={this.state.datetime}
+                            onChange={this.handleOnChange.bind(this)}>
+                        </DatetimeInput> */}
                     </label>
 
                     <button>ADD Hike</button>

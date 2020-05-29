@@ -5,11 +5,11 @@ class AllHikes extends Component {
         return (
           <div>
             <h1>AllHikes</h1>
-            <div className="card text-center border-primary mb-3">
              
               {this.props.hikes.map((h, idx) => (
-
-                    <article key={idx}>
+                
+                <article key={idx}>
+                  <div className="card text-center border-primary mb-3">
                         <h3 className="card-header">
                           Hike Name: {h.title}
                         </h3> 
@@ -17,13 +17,14 @@ class AllHikes extends Component {
                           <div className="card-title">User: {h.user.name}</div>
 
                           <div className="card-text">Description: {h.description}</div>
-                          <a href="#" class="btn btn-primary">Go somewhere</a>
+                          <div className="card-text">Date: {h.date}</div>
+                          <a href="#" className="btn btn-primary">Go somewhere</a>
                         </div>
-                    </article>
+                  </div>
+                </article>
                     
-                ))}
+              ))}
                 
-            </div>
           </div>
         );
     }
