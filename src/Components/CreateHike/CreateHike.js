@@ -20,20 +20,25 @@ class CreateHike extends Component {
   addHike = (e) => {
     e.preventDefault();
 
-    console.log(this.state.newHike);
+    // console.log(this.state.newHike);
 
     fetch("/api/hikes/" + "create", {
       method: "POST",
+      // need for react to talk to express
       mode: "cors",
       cache: "no-cache",
+      // looks for stuff like api keys
       credentials: "same-origin",
+      // option value with more values api keys
       headers: {
         Authorization: "Bearer " + tokenService.getToken(),
+        // what type of data is being passed
         "Content-Type": "application/json",
       },
-      // headers: new Headers({'Content-Type': 'application/json'}),
+      // this is a post request. in post requests we ussually send a body.
       body: JSON.stringify(this.state.newHike),
     })
+      // fisrt resolves promise
       .then((res) => {
         if (res.ok) {
           // Using the "function" approach because relying on existing state
@@ -47,14 +52,11 @@ class CreateHike extends Component {
           }));
           return res.json();
         }
-        // Probably a duplicate email
-        // res.json().then(function(err) {
-        //     throw new Error(err)
-        // })
       })
+      // second handles datat in the promise
       .then((data) => {
-          console.log(data)
-        // this.props.updateHikes(data.hike);
+        console.log(data)
+        this.props.updateHikes(data.hike);
       });
   };
 
@@ -85,17 +87,9 @@ class CreateHike extends Component {
       <section>
         <h2>Create a Hike</h2>
         <hr />
-
-        <hr />
         <form onSubmit={this.addHike}>
           <label>
             <span>Hike Name</span>
-            {/* <input 
-                        name='title'
-                        value={this.state.newHike.title}
-                        onChange={this.handleFormChange}
-                        required
-                    /> */}
             <select 
               name="title" 
               id="title" 

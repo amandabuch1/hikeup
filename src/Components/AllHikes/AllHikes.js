@@ -8,6 +8,7 @@ class AllHikes extends Component {
              
               {this.props.hikes.map((h, idx) => (
                 
+              
                 <article key={idx}>
                   <div className="card text-center border-primary mb-3">
                         <h3 className="card-header">
@@ -18,6 +19,7 @@ class AllHikes extends Component {
 
                           <div className="card-text">Description: {h.description}</div>
                           <div className="card-text">Date: {h.date}</div>
+                         
                           <a href="#" className="btn btn-primary">Go somewhere</a>
                         </div>
                   </div>

@@ -46,38 +46,10 @@ class App extends Component {
         (newState) => {
           this.getAllHikes();
         }
-        // async () => await this.getRandomList()
       );
     });
   }
 
-  // getRandomList = async () => {
-  //   try {
-  //     const randomList = await this.getAllHikes.randomList(this.state.location)
-  //     console.log(randomList.data)
-  //     this.setState({
-  //       randomList: randomList.data._embedded.events
-  //     })
-  //   } catch(err) {
-  //     console.log(err)
-  //   }
-  // }
-
-  // randomList =(location)=>{
-  //   return fetch(BASE_URL + 'random', {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-type': 'application/json',
-  //       'Authorization': 'Bearer ' + tokenService.getToken()
-  //     },
-  //     body: JSON.stringify({location})
-  //   }).then(res => {
-  //     if (res.ok) return res.json();
-  //     throw new Error('Invalid request to randomList');
-  //   }).then(data => {
-  //     return data
-  //   });
-  // }
 
   updateHikes = (newHike) => {
     console.log(newHike);
@@ -88,21 +60,9 @@ class App extends Component {
 
   getAllHikes = () => {
     const { lat, long } = this.state.location;
-    // todo change string to match hiking project url
+    // change string to match hiking project url
     fetch(
       `https://www.hikingproject.com/data/get-trails?lat=${lat}&lon=${long}&maxDistance=10&key=${process.env.REACT_APP_HIKING_PROJECT_KEY}`,
-      {
-        // // method: 'POST',
-        // // mode: 'cors',
-        // // cache: 'no-cache',
-        // // credentials: 'same-origin',
-        // headers: {
-        //     'Authorization': 'Bearer ' + tokenService.getToken(),
-        //     'Content-Type': 'application/json'
-        //   },
-        // // headers: new Headers({'Content-Type': 'application/json'}),
-        // body: JSON.stringify(this.state.newHike)
-      }
     )
       .then((res) => {
         console.log(res);
@@ -117,6 +77,8 @@ class App extends Component {
       });
   };
 
+  
+
   handleLogout = () => {
     userService.logout();
     this.setState({ user: null });
@@ -124,7 +86,35 @@ class App extends Component {
 
   handleSignupOrLogin = () => {
     this.getAllHikes();
+    this.indexGetAllHikes();
     this.setState({ user: userService.getUser() });
+  };
+
+  indexGetAllHikes= () => {
+    fetch("/api/hikes/" + "index", {
+        method: 'GET',
+        mode: 'cors',
+        cache: 'no-cache',
+        credentials: 'same-origin',
+        headers: {
+            'Authorization': 'Bearer ' + tokenService.getToken(),
+            'Content-Type': 'application/json'
+          },
+        // headers: new Headers({'Content-Type': 'application/json'}),
+        // body: JSON.stringify(this.state.newHike)
+      }
+    )
+      .then((res) => {
+        console.log(res);
+        if (res.ok) {
+          return res.json();
+        }
+      })
+      .then((hikes) => {
+        console.log("HIKKKKKES", hikes)
+        this.setState({hikes});
+
+      });
   };
 
   render() {
@@ -146,7 +136,11 @@ class App extends Component {
           <Route
             exact
             path="/hikes"
-            render={() => <AllHikes hikes={this.state.hikes} />}
+            render={() => 
+            <AllHikes 
+              hikes={this.state.hikes} 
+              // indexGetAllHikes={this.indexGetAllHikes}
+            />}
           />
 
           <Route

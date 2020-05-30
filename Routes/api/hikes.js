@@ -17,7 +17,7 @@ router.post('/create', hikesCtrl.create);
 
 router.use(require('../../config/auth'));
 router.post('/create', checkAuth, hikesCtrl.create);
-router.post('/all', checkAuth, hikesCtrl.index);
+router.get('/index', checkAuth, hikesCtrl.index);
 // router.post('/random', checkAuth, eventsCtrl.getRandom);
 // router.use(require('../../config/auth'));
 // router.post('/', checkAuth, scoresCtrl.create);
