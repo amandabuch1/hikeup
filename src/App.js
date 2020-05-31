@@ -9,6 +9,8 @@ import Home from "./Components/Home/Home";
 import AllHikes from "./Components/AllHikes/AllHikes";
 import CreateHike from "./Components/CreateHike/CreateHike";
 import tokenService from "./utils/tokenService";
+import UpdateHike from "./Components/UpdateHike/UpdateHike";
+
 
 class App extends Component {
   constructor() {
@@ -58,6 +60,16 @@ class App extends Component {
     });
   };
 
+  deleteHike = (hikeIdx) => {
+    let hikeList= this.state.hikes
+    hikeList.splice(hikeIdx, 1);
+    console.log(hikeList);
+
+    this.setState({
+      hikes: hikeList,
+    });
+  };
+
   getAllHikes = () => {
     const { lat, long } = this.state.location;
     // change string to match hiking project url
@@ -76,8 +88,6 @@ class App extends Component {
         this.setState({ nearbyTrails: hikes.trails });
       });
   };
-
-  
 
   handleLogout = () => {
     userService.logout();
@@ -139,8 +149,20 @@ class App extends Component {
             render={() => 
             <AllHikes 
               hikes={this.state.hikes} 
-              // indexGetAllHikes={this.indexGetAllHikes}
+              deleteHike={this.deleteHike}
+              
+              
             />}
+          />
+
+          <Route
+            path="/update/:id"
+            render={(props)=>
+              <UpdateHike
+                routeParams={props}
+       
+              />
+            }
           />
 
           <Route

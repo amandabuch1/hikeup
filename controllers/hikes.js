@@ -35,14 +35,14 @@ const create = async(req, res) =>{
     // console.log("req.body.user",req.body.user)
     // create a new hike
     const newHike = new Hike(req.body);
-    // newHike.populate("user")
+    
     
     // save the new hike with the user to the database
     try {
         await newHike.populate('user').execPopulate();
         await newHike.save();
         const hike = newHike
-        // .populate("user")
+    
         console.log(hike)
         res.json( {hike} );
 

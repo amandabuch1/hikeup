@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import tokenService from "../../utils/tokenService";
+import HikeForm from "../HikeForm/HikeForm";
 // import hikesService from '../../utils/hikeService';
 
 class CreateHike extends Component {
@@ -72,56 +73,65 @@ class CreateHike extends Component {
   };
 
   render() {
-    const hikesList =
-      // if hikes have been fetched from api, then map through them:
-      this.props.nearbyTrails.length > 0 &&
-      this.props.nearbyTrails.map((trail) => {
-        return (
-          <option key={trail.id} value={trail.name}>
-            {trail.name}
-          </option>
-        );
-      });
+    // const hikesList =
+    //   // if hikes have been fetched from api, then map through them:
+    //   this.props.nearbyTrails.length > 0 &&
+    //   this.props.nearbyTrails.map((trail) => {
+    //     return (
+    //       <option key={trail.id} value={trail.name}>
+    //         {trail.name}
+    //       </option>
+    //     );
+    //   });
 
     return (
-      <section>
-        <h2>Create a Hike</h2>
-        <hr />
-        <form onSubmit={this.addHike}>
-          <label>
-            <span>Hike Name</span>
-            <select 
-              name="title" 
-              id="title" 
-              required
-              value={this.state.newHike.title}
-              onChange={this.handleFormChange}
-            >
-              {hikesList}
-            </select>
-          </label>
-          <label>
-            <span>Description</span>
-            <input
-              name="description"
-              value={this.state.newHike.description}
-              onChange={this.handleFormChange}
-            />
-          </label>
+      <HikeForm 
+        addHike={this.addHike}
+        handleFormChange={this.handleFormChange}
+        nearbyTrails={this.props.nearbyTrails}
+        formTitle="Create Hike"
+        buttonText="Create"
+        newHike={this.state.newHike}
+      />
 
-          <label>
-            <span>Date</span>
-            <input
-              type="datetime-local"
-              name="date"
-              onChange={this.handleFormChange}
-              value={this.state.newHike.date}
-            ></input>
-          </label>
+      // <section>
+      //   <h2>Create a Hike</h2>
+      //   <hr />
+      //   <form onSubmit={this.addHike}>
+      //     <label>
+      //       <span>Hike Name</span>
+      //       <select 
+      //         name="title" 
+      //         id="title" 
+      //         required
+      //         value={this.state.newHike.title}
+      //         onChange={this.handleFormChange}
+      //       >
+      //         {hikesList}
+      //       </select>
+      //     </label>
+      //     <label>
+      //       <span>Description</span>
+      //       <input
+      //         name="description"
+      //         value={this.state.newHike.description}
+      //         onChange={this.handleFormChange}
+      //       />
+      //     </label>
 
-          <button>ADD Hike</button>
-        </form>
-      </section>
+      //     <label>
+      //       <span>Date</span>
+      //       <input
+      //         type="datetime-local"
+      //         name="date"
+      //         onChange={this.handleFormChange}
+      //         value={this.state.newHike.date}
+      //       ></input>
+      //     </label>
+
+      //     <button>ADD Hike</button>
+      //   </form>
+      // </section>
     );
   }
 }
