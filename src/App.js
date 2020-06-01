@@ -109,8 +109,7 @@ class App extends Component {
             'Authorization': 'Bearer ' + tokenService.getToken(),
             'Content-Type': 'application/json'
           },
-        // headers: new Headers({'Content-Type': 'application/json'}),
-        // body: JSON.stringify(this.state.newHike)
+       
       }
     )
       .then((res) => {
@@ -120,11 +119,38 @@ class App extends Component {
         }
       })
       .then((hikes) => {
-        console.log("HIKKKKKES", hikes)
+        // console.log("HIKKKKKES", hikes)
         this.setState({hikes});
 
       });
   };
+
+  // deleteHike= (e) => {
+  //   fetch("/api/hikes/"+"e._id", {
+  //       method: 'DELETE',
+  //       mode: 'cors',
+  //       cache: 'no-cache',
+  //       credentials: 'same-origin',
+  //       headers: {
+  //           'Authorization': 'Bearer ' + tokenService.getToken(),
+  //           'Content-Type': 'application/json'
+  //         },
+  //       // headers: new Headers({'Content-Type': 'application/json'}),
+  //       body: e
+  //     }
+  //   )
+  //     .then((res) => {
+  //       console.log(res);
+  //       if (res.ok) {
+  //         return res.json();
+  //       }
+  //     })
+  //     .then((hikes) => {
+  //       console.log("HIKKKKKES", hikes)
+
+
+  //     });
+  // };
 
   render() {
     return (

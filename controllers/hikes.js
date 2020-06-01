@@ -36,30 +36,36 @@ const create = async(req, res) =>{
 };
 
 
-const update = (req, res) =>{
-    Hike.findByIdAndUpdate(req.params.id, req.body, { new: true })
-    .then((hike)=>{
-        res.status(200).json(hike)
-    });
-};
+// const update = (req, res) =>{
+//     Hike.findByIdAndUpdate(req.params.id, req.body, { new: true })
+//     .then((hike)=>{
+//         res.status(200).json(hike)
+//     });
+// };
 
-const deleteHike = (req, res) => {
-    Hike.findByIdAndRemove(req.params.id).then((hike)=>{
-        res.status(200).json(hike);
-    });
-};
 
-const show =(req,res)=>{
-    Hike.findById(req.params.id).then((matza)=>{
-        res.status(200).json(matza)
-    });
+async function deleteHike(req, res) {
+    const deletedHike = await Hike.findByIdAndRemove(req.params.id)
+    res.status(200).json(deletedHike);
 }
+
+// const deleteHike = (req, res) => {
+//     Hike.findByIdAndRemove(req.params.id).then((hike)=>{
+//         res.status(200).json(hike);
+//     });
+// };
+
+// const show =(req,res)=>{
+//     Hike.findById(req.params.id).then((matza)=>{
+//         res.status(200).json(matza)
+//     });
+// }
 
 module.exports = {
     create,
     index,
-    update,
+    // update,
     deleteHike,
-    show
+    // show
 };
 

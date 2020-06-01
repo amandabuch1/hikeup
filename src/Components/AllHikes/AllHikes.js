@@ -26,11 +26,12 @@ class AllHikes extends Component {
                           <div className="card-text">Description: {h.description}</div>
                           <div className="card-text">Date: {h.date}</div>
                          
-                          <button className="btn btn-primary" onClick={()=>{
+                          {/* <button className="btn btn-primary" onClick={()=>{
                             this.props.deleteHike(idx, h._id);
                           }}>
                             Delete
-                          </button>
+                          </button> */}
+                          
                           {/* <button >
                             <Link to={`update/${h._id}`}>
                                   Update
