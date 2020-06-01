@@ -10,6 +10,7 @@ class AllHikes extends Component {
         return (
           <div>
             <h1>AllHikes</h1>
+            <hr/>
              
               {this.props.hikes.map((h, idx) => (
                 
