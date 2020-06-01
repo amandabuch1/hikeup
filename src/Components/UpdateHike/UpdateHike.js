@@ -14,36 +14,38 @@ class UpdateHike extends Component {
         },
       };
 
-    componentWillMount(){
+    componentDidMount(){
+        console.log("component will mount")
         // this is where i do the fetch 
-        fetch("/api/hikes/" + "update", {
-            method: "POST",
-            // need for react to talk to express
-            mode: "cors",
-            cache: "no-cache",
-            // looks for stuff like api keys
-            credentials: "same-origin",
-            // option value with more values api keys
-            headers: {
-              Authorization: "Bearer " + tokenService.getToken(),
-              // what type of data is being passed
-              "Content-Type": "application/json",
-            },
-            // this is a post request. in post requests we ussually send a body.
-            body: JSON.stringify(this.state.newHike),
-          })
-          
-        
-        .then((res) => {
-            if (res.ok) {
+        // fetch("/api/hikes/" + this.props.routeParams.match.params.id, {
+        //     method: "GET",
+        //     // need for react to talk to express
+        //     mode: "cors",
+        //     cache: "no-cache",
+        //     // looks for stuff like api keys
+        //     credentials: "same-origin",
+        //     // option value with more values api keys
+        //     headers: {
+        //       Authorization: "Bearer " + tokenService.getToken(),
+        //       // what type of data is being passed
+        //       "Content-Type": "application/json",
+        //     },
+        //     // this is a post request. in post requests we ussually send a body.
+        //     // body: JSON.stringify(this.state.newHike),
+        //   })
+        // .then((res) => {
+        //   console.log(res)
+        //     if (res.ok) {
 
-              this.setState((state) => ({
-                // update the state with the response
-                // newHike: { title: "", description: "", date: "" },
-              }));
-              return res.json();
-            }
-          })
+        //       this.setState((state) => {
+        //         console.log(res.json())
+        //         // update the state with the response
+        //         // newHike: { title: "", description: "", date: "" },
+        //       });
+        //       return res.json();
+        //     }
+        //   })
+          console.log("component did finish")
     }
 
     handleFormChange = (e) => {

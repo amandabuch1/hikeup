@@ -49,11 +49,17 @@ const deleteHike = (req, res) => {
     });
 };
 
+const show =(req,res)=>{
+    Hike.findById(req.params.id).then((matza)=>{
+        res.status(200).json(matza)
+    });
+}
 
 module.exports = {
     create,
     index,
     update,
-    deleteHike
+    deleteHike,
+    show
 };
 

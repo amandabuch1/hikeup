@@ -20,6 +20,7 @@ router.post('/create', checkAuth, hikesCtrl.create);
 router.post('/:id', checkAuth, hikesCtrl.update);
 router.get('/index', checkAuth, hikesCtrl.index);
 router.delete('/:id', checkAuth, hikesCtrl.deleteHike);
+router.get('/:id', checkAuth, hikesCtrl.show);
 // router.post('/random', checkAuth, eventsCtrl.getRandom);
 // router.use(require('../../config/auth'));
 // router.post('/', checkAuth, scoresCtrl.create);
