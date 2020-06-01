@@ -44,6 +44,7 @@ class App extends Component {
         },
         (newState) => {
           this.getAllHikes();
+          this.indexGetAllHikes();
         }
       );
     });
@@ -75,8 +76,9 @@ class App extends Component {
         return res.json();
       }
     }).then((hikes) => {
-      // console.log("HIKKKKKES", hikes)
-      this.setState({hikes});
+      console.log("Delete", hikes)
+      // this.setState({hikes});
+      this.indexGetAllHikes();
 
     });
   };
@@ -126,7 +128,7 @@ class App extends Component {
           return res.json();
         }
     }).then((hikes) => {
-        // console.log("HIKKKKKES", hikes)
+        console.log("Setting hike state", hikes)
         this.setState({hikes});
     });
   };

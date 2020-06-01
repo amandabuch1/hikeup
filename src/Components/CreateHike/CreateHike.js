@@ -15,9 +15,6 @@ class CreateHike extends Component {
 
   addHike = (e) => {
     e.preventDefault();
-
-    // console.log(this.state.newHike);
-
     fetch("/api/hikes/create", {
       method: "POST",
       // need for react to talk to express
