@@ -76,7 +76,7 @@ class App extends Component {
       }
     }).then((hikes) => {
       // console.log("HIKKKKKES", hikes)
-      // this.setState({hikes});
+      this.setState({hikes});
 
     });
   };

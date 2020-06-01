@@ -7,7 +7,8 @@ class AllHikes extends Component {
   
 
   render(){
-    const hikes = (this.props.hikes.map((h, idx) => (
+    const hikes = this.props.hikes.length ?
+     (this.props.hikes.map((h, idx) => (
       <article key={idx}>
         <div className="card text-center border-primary mb-3">
               <h3 className="card-header">
@@ -32,19 +33,15 @@ class AllHikes extends Component {
               </div>
         </div>
       </article>     
-    )))
+    ))) :
+   "no hikes"
+
 
     return (
       <div>
         <h1>AllHikes</h1>
         <hr/>
-            {/* ternary statement that h1 no hikes if hikes return hikes variable
-                  */}
-          {(this.props.hikes.length == 0) ? 
-          "No hikes"
-          :
-          hikes
-          }
+            {hikes}
       </div>
     );
   }

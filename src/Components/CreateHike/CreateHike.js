@@ -13,11 +13,6 @@ class CreateHike extends Component {
     },
   };
 
-  // async componentDidMount() {
-  //     const hikes = await hikesService.index();
-  //     this.props.handleUpdateScores(hikes);
-  // }
-
   addHike = (e) => {
     e.preventDefault();
 
@@ -56,7 +51,7 @@ class CreateHike extends Component {
       })
       // second handles datat in the promise
       .then((data) => {
-        console.log(data)
+        console.log("DDDATATATA",data)
         this.props.updateHikes(data.hike);
       });
   };
