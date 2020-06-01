@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import tokenService from "../../utils/tokenService";
+// import tokenService from "../../utils/tokenService";
 import HikeForm from "../HikeForm/HikeForm";
-import { useParams } from "react-router-dom";
+// import { useParams } from "react-router-dom";
 
 class UpdateHike extends Component {
 

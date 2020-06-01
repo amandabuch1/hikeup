@@ -100,7 +100,7 @@ class App extends Component {
   };
 
   indexGetAllHikes= () => {
-    fetch("/api/hikes/" + "index", {
+    fetch("/api/hikes/index", {
         method: 'GET',
         mode: 'cors',
         cache: 'no-cache',

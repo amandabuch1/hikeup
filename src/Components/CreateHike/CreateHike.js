@@ -23,7 +23,7 @@ class CreateHike extends Component {
 
     // console.log(this.state.newHike);
 
-    fetch("/api/hikes/" + "create", {
+    fetch("/api/hikes/create", {
       method: "POST",
       // need for react to talk to express
       mode: "cors",

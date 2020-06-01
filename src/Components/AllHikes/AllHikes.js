@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import UpdateHike from '../UpdateHike/UpdateHike';
-import { Link } from 'react-router-dom';
+// import UpdateHike from '../UpdateHike/UpdateHike';
+// import { Link } from 'react-router-dom';
 
 class AllHikes extends Component {
 
@@ -26,20 +26,18 @@ class AllHikes extends Component {
                           <div className="card-text">Description: {h.description}</div>
                           <div className="card-text">Date: {h.date}</div>
                          
-                          <a href="#" className="btn btn-primary">Go somewhere</a>
-
-                          <button onClick={()=>{
+                          <button className="btn btn-primary" onClick={()=>{
                             this.props.deleteHike(idx, h._id);
                           }}>
                             Delete
                           </button>
-                          <button >
+                          {/* <button >
                             <Link to={`update/${h._id}`}>
                                   Update
                             </Link>
                       
                            
-                          </button>
+                          </button> */}
                           
                         </div>
                   </div>
