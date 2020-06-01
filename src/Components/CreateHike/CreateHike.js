@@ -73,16 +73,7 @@ class CreateHike extends Component {
   };
 
   render() {
-    // const hikesList =
-    //   // if hikes have been fetched from api, then map through them:
-    //   this.props.nearbyTrails.length > 0 &&
-    //   this.props.nearbyTrails.map((trail) => {
-    //     return (
-    //       <option key={trail.id} value={trail.name}>
-    //         {trail.name}
-    //       </option>
-    //     );
-    //   });
+    
 
     return (
       <HikeForm 
@@ -93,45 +84,6 @@ class CreateHike extends Component {
         buttonText="Create"
         newHike={this.state.newHike}
       />
-
-      // <section>
-      //   <h2>Create a Hike</h2>
-      //   <hr />
-      //   <form onSubmit={this.addHike}>
-      //     <label>
-      //       <span>Hike Name</span>
-      //       <select 
-      //         name="title" 
-      //         id="title" 
-      //         required
-      //         value={this.state.newHike.title}
-      //         onChange={this.handleFormChange}
-      //       >
-      //         {hikesList}
-      //       </select>
-      //     </label>
-      //     <label>
-      //       <span>Description</span>
-      //       <input
-      //         name="description"
-      //         value={this.state.newHike.description}
-      //         onChange={this.handleFormChange}
-      //       />
-      //     </label>
-
-      //     <label>
-      //       <span>Date</span>
-      //       <input
-      //         type="datetime-local"
-      //         name="date"
-      //         onChange={this.handleFormChange}
-      //         value={this.state.newHike.date}
-      //       ></input>
-      //     </label>
-
-      //     <button>ADD Hike</button>
-      //   </form>
-      // </section>
     );
   }
 }

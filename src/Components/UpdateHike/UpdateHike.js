@@ -1,32 +1,83 @@
 import React, { Component } from "react";
-// import tokenService from "../../utils/tokenService";
-// import HikeForm from "../HikeForm/HikeForm";
-// import hikesService from '../../utils/hikeService';
+import tokenService from "../../utils/tokenService";
+import HikeForm from "../HikeForm/HikeForm";
 import { useParams } from "react-router-dom";
 
 class UpdateHike extends Component {
-    // componentDidMount(){
 
-    //     let { id } = useParams();
-    //     console.log(id, "FROM UPDATE HIKE")
-    // }
+    state = {
+        // hikes: [{ title: "runyon cannon", description: 4 }],
+        newHike: {
+          title: "",
+          description: "",
+          date: "",
+        },
+      };
 
+    componentWillMount(){
+        // this is where i do the fetch 
+        fetch("/api/hikes/" + "update", {
+            method: "POST",
+            // need for react to talk to express
+            mode: "cors",
+            cache: "no-cache",
+            // looks for stuff like api keys
+            credentials: "same-origin",
+            // option value with more values api keys
+            headers: {
+              Authorization: "Bearer " + tokenService.getToken(),
+              // what type of data is being passed
+              "Content-Type": "application/json",
+            },
+            // this is a post request. in post requests we ussually send a body.
+            body: JSON.stringify(this.state.newHike),
+          })
+          
+        
+        .then((res) => {
+            if (res.ok) {
+
+              this.setState((state) => ({
+                // update the state with the response
+                // newHike: { title: "", description: "", date: "" },
+              }));
+              return res.json();
+            }
+          })
+    }
+
+    handleFormChange = (e) => {
+        e.persist();
+        // Shows what <input> your typing in
+        // console.log(e.target);
+        this.setState((state) => {
+          const newState = { newHike: { ...state.newHike } };
+          newState.newHike[e.target.name] = e.target.value;
+          return newState;
+        });
+    };
+ 
     render(){
         // gives us the id to hike we clicked on all hikes page
         console.log(this.props.routeParams.match.params.id)
 
         // fetch hike from backend and pass to HikeForm
-
+        
         // create hike to do update
 
         // onsubmit update instead of create
 
 
         return(
-            <div>
-                Hello World
-
-            </div>
+            <HikeForm 
+                // addHike={this.addHike}
+                handleFormChange={this.handleFormChange}
+                nearbyTrails={this.props.nearbyTrails}
+                formTitle="Update Hike"
+                buttonText="Update"
+                newHike={this.state.newHike}
+            />
+         
         )
     }
 //   state = {

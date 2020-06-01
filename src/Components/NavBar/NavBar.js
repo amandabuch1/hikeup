@@ -21,7 +21,7 @@ const NavBar = (props) =>{
         </Link>
 
         &nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-        <span>WELCOME, {props.user.name}</span>
+        <span>Welcome to HikeUP, {props.user.name}</span>
    </div>
     :
     <div>

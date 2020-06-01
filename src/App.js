@@ -160,6 +160,8 @@ class App extends Component {
             render={(props)=>
               <UpdateHike
                 routeParams={props}
+                nearbyTrails={this.state.nearbyTrails}
+                updateHikes={this.updateHikes}
        
               />
             }

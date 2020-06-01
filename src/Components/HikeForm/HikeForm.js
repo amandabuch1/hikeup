@@ -14,8 +14,9 @@ class HikeForm extends Component {
         });
         return(
             <section>
-            <h2>{this.props.formTitle}</h2>
+            <h1>{this.props.formTitle}</h1>
             <hr />
+
             <form onSubmit={this.props.addHike}>
             <label>
                 <span>Hike Name</span>
@@ -25,10 +26,12 @@ class HikeForm extends Component {
                 required
                 value={this.props.newHike.title}
                 onChange={this.props.handleFormChange}
+                placeholder=" "
                 >
                 {hikesList}
                 </select>
             </label>
+            <br />
             <label>
                 <span>Description</span>
                 <input
@@ -37,7 +40,7 @@ class HikeForm extends Component {
                 onChange={this.props.handleFormChange}
                 />
             </label>
-
+            <br/>
             <label>
                 <span>Date</span>
                 <input
