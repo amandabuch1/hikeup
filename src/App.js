@@ -25,11 +25,9 @@ class App extends Component {
         // from our DB
         // { title: "runyon cannon", description: 4 }
       ],
-      nearbyTrails: [{ id: 5, name: "Hello" }],
-
-      // { trails: [{ id: 5, name: "Hello" }] },
+      nearbyTrails: [{ id: 5, name: "" }],
       // from 3d party API
-      // { title: "runyon cannon", description: 4 }
+   
       isLoading: true,
     };
   }
@@ -60,12 +58,26 @@ class App extends Component {
   };
 
   deleteHike = (hikeIdx) => {
-    let hikeList= this.state.hikes
-    hikeList.splice(hikeIdx, 1);
-    console.log(hikeList);
+    console.log("hike ID", hikeIdx)
+    fetch("/api/hikes/"+hikeIdx, {
+      method: 'DELETE',
+      mode: 'cors',
+      cache: 'no-cache',
+      credentials: 'same-origin',
+      headers: {
+          'Authorization': 'Bearer ' + tokenService.getToken(),
+          'Content-Type': 'application/json'
+      },
+    }
+    ).then((res) => {
+      console.log(res);
+      if (res.ok) {
+        return res.json();
+      }
+    }).then((hikes) => {
+      // console.log("HIKKKKKES", hikes)
+      // this.setState({hikes});
 
-    this.setState({
-      hikes: hikeList,
     });
   };
 
@@ -74,18 +86,16 @@ class App extends Component {
     // change string to match hiking project url
     fetch(
       `https://www.hikingproject.com/data/get-trails?lat=${lat}&lon=${long}&maxDistance=10&key=${process.env.REACT_APP_HIKING_PROJECT_KEY}`,
-    )
-      .then((res) => {
+    ).then((res) => {
         console.log(res);
         if (res.ok) {
           return res.json();
         }
-      })
-      .then((hikes) => {
+    }).then((hikes) => {
         console.log(hikes.trails);
         console.log("Updating state with hikes");
         this.setState({ nearbyTrails: hikes.trails });
-      });
+    });
   };
 
   handleLogout = () => {
@@ -101,82 +111,40 @@ class App extends Component {
 
   indexGetAllHikes= () => {
     fetch("/api/hikes/index", {
-        method: 'GET',
-        mode: 'cors',
-        cache: 'no-cache',
-        credentials: 'same-origin',
-        headers: {
-            'Authorization': 'Bearer ' + tokenService.getToken(),
-            'Content-Type': 'application/json'
-          },
+      method: 'GET',
+      mode: 'cors',
+      cache: 'no-cache',
+      credentials: 'same-origin',
+      headers: {
+          'Authorization': 'Bearer ' + tokenService.getToken(),
+          'Content-Type': 'application/json'
+      },
        
-      }
-    )
-      .then((res) => {
+    }).then((res) => {
         console.log(res);
         if (res.ok) {
           return res.json();
         }
-      })
-      .then((hikes) => {
+    }).then((hikes) => {
         // console.log("HIKKKKKES", hikes)
         this.setState({hikes});
-
-      });
+    });
   };
 
-  // deleteHike= (e) => {
-  //   fetch("/api/hikes/"+"e._id", {
-  //       method: 'DELETE',
-  //       mode: 'cors',
-  //       cache: 'no-cache',
-  //       credentials: 'same-origin',
-  //       headers: {
-  //           'Authorization': 'Bearer ' + tokenService.getToken(),
-  //           'Content-Type': 'application/json'
-  //         },
-  //       // headers: new Headers({'Content-Type': 'application/json'}),
-  //       body: e
-  //     }
-  //   )
-  //     .then((res) => {
-  //       console.log(res);
-  //       if (res.ok) {
-  //         return res.json();
-  //       }
-  //     })
-  //     .then((hikes) => {
-  //       console.log("HIKKKKKES", hikes)
-
-
-  //     });
-  // };
 
   render() {
     return (
       <div className="App">
         <NavBar user={this.state.user} handleLogout={this.handleLogout} />
-        {/* Hello this is app
-          <Link to="/signup">
-            Signup
-          </Link>
-  
-          <Link to="/login">
-            Login
-          </Link> */}
-
         <Switch>
           <Route exact path="/" component={Home} />
-
           <Route
             exact
             path="/hikes"
             render={() => 
             <AllHikes 
               hikes={this.state.hikes} 
-              deleteHike={this.deleteHike}
-              
-              
+              deleteHike={this.deleteHike} 
             />}
           />
 
@@ -187,7 +155,6 @@ class App extends Component {
                 routeParams={props}
                 nearbyTrails={this.state.nearbyTrails}
                 updateHikes={this.updateHikes}
-       
               />
             }
           />

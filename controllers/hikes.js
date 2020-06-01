@@ -45,6 +45,7 @@ const create = async(req, res) =>{
 
 
 async function deleteHike(req, res) {
+    console.log("HIT CONTROLER")
     const deletedHike = await Hike.findByIdAndRemove(req.params.id)
     res.status(200).json(deletedHike);
 }
