@@ -52,14 +52,14 @@ class App extends Component {
 
 
   updateHikes = (newHike) => {
-    console.log(newHike);
+    // console.log(newHike);
     this.setState({
       hikes: [...this.state.hikes, newHike],
     });
   };
 
   deleteHike = (hikeIdx) => {
-    console.log("hike ID", hikeIdx)
+    // console.log("hike ID", hikeIdx)
     fetch("/api/hikes/"+hikeIdx, {
       method: 'DELETE',
       mode: 'cors',
@@ -71,15 +71,13 @@ class App extends Component {
       },
     }
     ).then((res) => {
-      console.log(res);
+      // console.log(res);
       if (res.ok) {
         return res.json();
       }
     }).then((hikes) => {
-      console.log("Delete", hikes)
-      // this.setState({hikes});
+      // console.log("Delete", hikes)
       this.indexGetAllHikes();
-
     });
   };
 
@@ -89,13 +87,13 @@ class App extends Component {
     fetch(
       `https://www.hikingproject.com/data/get-trails?lat=${lat}&lon=${long}&maxDistance=10&key=${process.env.REACT_APP_HIKING_PROJECT_KEY}`,
     ).then((res) => {
-        console.log(res);
+        // console.log(res);
         if (res.ok) {
           return res.json();
         }
     }).then((hikes) => {
-        console.log(hikes.trails);
-        console.log("Updating state with hikes");
+        // console.log(hikes.trails);
+        // console.log("Updating state with hikes");
         this.setState({ nearbyTrails: hikes.trails });
     });
   };
@@ -123,12 +121,12 @@ class App extends Component {
       },
        
     }).then((res) => {
-        console.log(res);
+        // console.log(res);
         if (res.ok) {
           return res.json();
         }
     }).then((hikes) => {
-        console.log("Setting hike state", hikes)
+        // console.log("Setting hike state", hikes)
         this.setState({hikes});
     });
   };
