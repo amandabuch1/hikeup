@@ -4,10 +4,20 @@ Hiking alone is dangerous and unsafe. HikeUp was designed to make it easy to fin
 
 ## Screenshot:
 
-Image of landing page:
+Image of login:
+<img src="https://imgur.com/SMlYAJ8">
 
-<img src="https://i.imgur.com/gcPYct6.jpg">
+Image of signup:
+<img src="https://imgur.com/4pn3NRP">
 
+Image of about page:
+<img src="https://imgur.com/613vzMF">
+
+Image of Create a Hike page:
+<img src="https://imgur.com/2S3QVKt">
+
+Image of all the hikes:
+<img src="https://imgur.com/V87v4jp">
 
 ## Technologies used:
 
@@ -23,7 +33,7 @@ Image of landing page:
 
 
 
-## Link to Matza Time:
+## Link to HikeUp:
 
 https://trello.com/b/qC0GdBJ3/hike-up
 
