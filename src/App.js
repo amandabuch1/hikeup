@@ -147,6 +147,8 @@ class App extends Component {
             <AllHikes 
               hikes={this.state.hikes} 
               deleteHike={this.deleteHike} 
+              user={this.state.user}
+              
             />}
           />
 

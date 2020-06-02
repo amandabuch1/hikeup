@@ -20,11 +20,18 @@ class AllHikes extends Component {
                 <div className="card-text">Description: {h.description}</div>
                 <div className="card-text">Date: {h.date}</div>
                 
-                <button className="btn btn-primary" onClick={()=>{
+                
+                {this.props.user._id===h.user._id ?
+                (<button className="btn btn-primary" onClick={()=>{
                   this.props.deleteHike(h._id);
                 }}>
                   Delete
-                </button>
+                </button>)
+                 :
+                null}
+
+
+
                 {/* <button >
                   <Link to={`update/${h._id}`}>
                         Update
